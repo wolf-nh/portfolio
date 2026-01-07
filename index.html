@@ -232,8 +232,8 @@
         }
 
         .modal-content {
-            width: 90vh;
-            height: 90vh;
+            width: 80vh;
+            height: 80vh;
             display: flex;
             flex-direction: column;
             position: relative;
@@ -250,13 +250,16 @@
             justify-content: center;
         }
 
-       .modal-img {
+       .modal-img{
   display: block;
-  width: 100%;
-  height: auto;   /* ← 超重要 */
-  max-height: 80vh;
+  width: auto;        /* ←100%をやめる */
+  max-width: 100%;    /* 画面が狭い時は縮む */
+  height: auto;
+  max-height: 50vh;
   object-fit: contain;
+  margin: 0 auto;     /* 中央寄せ */
 }
+
 
         .modal-details {
             margin-top: 1rem;
@@ -449,13 +452,7 @@
   align-self: flex-start;  /* ←これが本命 */
   width: fit-content;      /* 念のため */
 }
-/* モーダル全体：画面内に収めて中でスクロール */
-.modal-content{
-  max-height: 90vh;
-  height: auto;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-}
+
 
 /* 画像：トリミングしない（contain）＋高さ上限 */
 .modal-image-wrapper{
@@ -463,13 +460,6 @@
   overflow: visible; /* hiddenにしない */
 }
 
-.modal-img{
-  display: block;
-  width: 100%;
-  height: auto;
-  max-height: 70vh;
-  object-fit: contain;
-}
 
 /* スマホ時：画像の上限を下げてテキストが見えるようにする */
 @media (max-width: 640px){
