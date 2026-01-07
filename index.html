@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<!--
+  Template: MONO v1.0
+  Author: Haruki Tominaga
+  License: https://amix-design.com/tominaga/eyan-theme/license 
+  © 2025 EYAN / トミナガハルキ
+-->
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex,nofollow">
+    <title>Noriko Hill Portfolio</title>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        /* =========================================
+           基本カラー設定
+           ここでサイト全体の色味を変更できます
+           ========================================= */
+        :root {
+            --bg-color: #f7f7f7;       /* 背景色 */
+            --text-main: #111111;      /* メインテキスト色 */
+            --text-sub: #292929;       /* サブテキスト色 */
+            --accent-color: #acacac;   /* 区切り線などのアクセント色 */
+        }
+
+        /* 修正箇所：スマホでの横幅はみ出し防止のためのボックスサイズ一括指定 */
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans JP', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            line-height: 1.8;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        a:hover {
+            color: var(--text-sub);
+        }
+
+        /* =========================================
+           レイアウト
+           ========================================= */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        @media (min-width: 1024px) {
+            .layout-wrapper {
+                display: flex;
+                min-height: 100vh;
+            }
+            .sidebar {
+                width: 25%;
+                position: fixed;
+                top: 0;
+                left: 0;
+                height: 100vh;
+                padding: 4rem;
+                /* box-sizing: border-box; は全体設定に移動済み */
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                border-right: 1px solid var(--accent-color);
+                z-index: 10;
+                opacity: 0; /* アニメーション初期値 */
+            }
+            .main-content {
+                margin-left: 25%;
+                width: 75%;
+                padding: 4rem;
+                /* box-sizing: border-box; は全体設定に移動済み */
+            }
+        }
+
+        @media (max-width: 1023px) {
+            .layout-wrapper {
+                display: block;
+            }
+            .sidebar {
+                position: relative;
+                width: 100%;
+                height: auto;
+                padding: 3rem 1.5rem;
+                border-bottom: 1px solid var(--accent-color);
+                opacity: 0;
+            }
+            .main-content {
+                width: 100%;
+                margin: 0;
+                padding: 3rem 1.5rem;
+            }
+            .sidebar-footer {
+                margin-top: 3rem;
+            }
+        }
+
+        /* =========================================
+           タイポグラフィ
+           ========================================= */
+        .site-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.05em;
+            margin: 0 0 1rem 0;
+            line-height: 1.1;
+        }
+
+        .site-role {
+            font-size: 0.875rem;
+            color: var(--text-sub);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 2rem;
+            display: block;
+        }
+
+        .site-bio {
+            font-size: 0.75rem;
+            color: #444444;
+            max-width: 400px;
+        }
+
+        /* =========================================
+           作品リスト
+           ========================================= */
+        .work-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 2rem;              /* カード間の余白（旧margin-bottom相当） */
+  align-items: start;
+}
+
+        .work-item {
+  margin-bottom: 0;       
+  opacity: 0;
+  transform: translateY(30px);
+  cursor: pointer;
+  outline: none;
+}
+
+        
+        /* キーボード操作時のフォーカス表示 */
+        .work-item:focus .work-img {
+            filter: brightness(1.2);
+            transform: scale(1.02);
+        }
+
+        .work-image-container {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            margin-bottom: 1rem;
+            background-color: #222;
+            position: relative;
+        }
+
+        .work-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.6s ease, filter 0.6s ease; 
+    filter: brightness(1); 
+        }
+
+        .work-item:hover .work-img {
+    transform: scale(1.03); 
+    filter: brightness(0.9); 
+}
+
+        .work-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .work-title {
+            font-size: 1rem;
+            font-weight: 500;
+            line-height: 130%;
+        }
+
+        .work-cat {
+            font-size: 0.875rem;
+            color: var(--text-sub);
+        }
+
+        /* =========================================
+           モーダル
+           ========================================= */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            /* box-sizing: border-box; は全体設定に移動済み */
+        }
+
+        .modal-content {
+            width: 90vh;
+            height: 90vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .modal-image-wrapper {
+            flex: 1;
+            width: 100%;
+            margin: 0 auto;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+       .modal-img {
+  display: block;
+  width: 100%;
+  height: auto;   /* ← 超重要 */
+  max-height: 80vh;
+  object-fit: contain;
+}
+
+        .modal-details {
+            margin-top: 1rem;
+            color: #fff;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0;
+            /* 修正箇所：改行時の行間を調整 */
+            line-height: 1.2;
+        }
+        
+        .modal-meta {
+            color: var(--text-sub);
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 2rem;
+            cursor: pointer;
+            z-index: 1001;
+            mix-blend-mode: difference;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .close-btn:hover {
+            opacity: 0.7;
+        }
+
+        .nav-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .nav-item {
+            margin-bottom: 0.5rem;
+        }
+        .nav-item a {
+            font-size: 0.875rem;
+            color: var(--text-sub);
+        }
+        .nav-item a:hover {
+            color: var(--text-main);
+            padding-left: 5px;
+        }
+        /* ===== work-list: responsive columns ===== */
+.work-list{
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 2rem;
+  align-items: start;
+}
+
+/* タブレット：2列 */
+@media (max-width: 1023px){
+  .work-list{
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* スマホ：1列 */
+@media (max-width: 640px){
+  .work-list{
+    grid-template-columns: 1fr;
+  }
+}
+/* ===== Work card typography & spacing ===== */
+.work-item{
+  /* 既存のアニメーション指定などはそのままでOK */
+  margin-bottom: 0; /* gridのgapで余白管理するなら0推奨 */
+}
+
+
+/* タイトル */
+.work-title{
+  font-size: 1rem;
+  line-height: 1.3;     /* 130% */
+  font-weight: 600;     /* お好みで。既存のトーンに合わせて調整OK */
+}
+
+/* カテゴリ（左）＋年（右） */
+.work-meta{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+/* カテゴリをタブ（ピル）っぽく */
+.work-cat{
+  align-items: center;
+  padding: 0.2rem 0.55rem;        /* 少しだけコンパクト */
+  border: 1px solid rgba(0,0,0,0.28);
+  border-radius: 999px;
+  font-size: 0.75rem;             /* year と同じサイズ */
+  line-height: 1;
+  letter-spacing: 0.02em;
+  color: var(--text-sub);
+  white-space: nowrap;
+}
+
+
+/* 年（右） */
+.work-year{
+  font-size: 0.75rem;
+  opacity: 0.7;
+  white-space: nowrap;
+}
+/* ===== Modal typography ===== */
+
+
+.modal-title{
+  margin: 0;
+  font-size: 1.25rem;
+  line-height: 1.3;
+}
+
+.modal-meta{
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--text-sub);
+}
+
+.modal-desc{
+  margin: 0.5rem 0 0;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--text);
+}
+
+/* リンクボタン風（さりげなく） */
+.modal-link{
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  width: fit-content;
+  font-size: 0.85rem;
+  color: var(--text);
+  text-decoration: none;
+  border: 1px solid rgba(0,0,0,0.22);
+  border-radius: 999px;
+  background: rgba(0,0,0,0.03);
+}
+
+.modal-link:hover{
+  border-color: rgba(0,0,0,0.35);
+  background: rgba(0,0,0,0.05);
+}
+/* ===== Modal meta (category + year) ===== */
+.modal-meta{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0.5rem 0 0.75rem;
+}
+
+.modal-cat{
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.55rem;
+  border: 1px solid rgba(255, 255, 255, 0.717);
+  border-radius: 999px;
+  font-size: 0.75rem;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  color: rgb(255, 255, 255);
+  background: rgba(148, 148, 148, 0.03);
+}
+
+.modal-year{
+  font-size: 0.75rem;
+  opacity: 0.7;
+    color: rgb(255, 255, 255);
+  white-space: nowrap;
+}
+/* modal-details が flex なので、ピルが横に伸びないようにする */
+.modal-cat{
+  align-self: flex-start;  /* ←これが本命 */
+  width: fit-content;      /* 念のため */
+}
+/* モーダル全体：画面内に収めて中でスクロール */
+.modal-content{
+  max-height: 90vh;
+  height: auto;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* 画像：トリミングしない（contain）＋高さ上限 */
+.modal-image-wrapper{
+  width: 100%;
+  overflow: visible; /* hiddenにしない */
+}
+
+.modal-img{
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 70vh;
+  object-fit: contain;
+}
+
+/* スマホ時：画像の上限を下げてテキストが見えるようにする */
+@media (max-width: 640px){
+  .modal-content{
+    max-height: 92vh; /* 少し余裕 */
+  }
+
+  .modal-img{
+    max-height: 45vh; /* ←ここが効く：画像が大きすぎて文章が押し出されるのを防ぐ */
+  }
+
+  .modal-details{
+    padding-top: 1rem; /* 画像との間隔を一定に */
+  }
+}
+
+    </style>
+</head>
+<body>
+
+<div class="layout-wrapper">
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <span id="user-role" class="site-role"></span>
+            <h1 id="user-name" class="site-title"></h1>
+            <p id="user-bio" class="site-bio"></p>
+        </div>
+        
+        <div class="sidebar-footer">
+            <ul id="link-list" class="nav-list"></ul>
+            <p style="font-size: 0.75rem; color: #444; margin-top: 2rem;">
+                &copy; <span id="year"></span> <span id="site-credit"></span>
+            </p>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <ul id="work-list" class="work-list"></ul>
+    </main>
+</div>
+
+<div class="modal-overlay" id="modal">
+  <button class="close-btn" id="modal-close" aria-label="閉じる">×</button>
+
+  <div class="modal-content">
+    <div class="modal-image-wrapper">
+      <img src="" alt="" class="modal-img" id="modal-img">
+    </div>
+
+    <div class="modal-details">
+      <p class="modal-year" id="modal-year"></p>
+      <h2 class="modal-title" id="modal-title"></h2>
+      <p class="modal-cat" id="modal-category"></p>
+      <p class="modal-desc" id="modal-desc"></p>
+
+      <a class="modal-link" id="modal-link" href="#" target="_blank" rel="noopener noreferrer">
+        Visit site →
+      </a>
+    </div>
+  </div>
+</div>
+
+
+    </div>
+</div>
+
+<script>
+    /* =================================================================
+       【設定エリア】
+       ここでポートフォリオの表示内容を変更します。
+       ================================================================= */
+    const monoConfig = {
+        // お名前（改行したい場所に <br> を入れてください）
+        name: "NORIKO<br>HILL",
+        
+        // 肩書き
+        role: "Web Designer / Graphic Designer",
+        
+        // 自己紹介文（\n で改行されます）
+        bio: "漫画・小説を軸としたエンタメ領域において、Web・アプリ・グラフィックを横断したデザインを展開。文脈や情緒的なニュアンスを深く解釈し、クライアントの理想を論理的かつ感性豊かなデザインへと昇華させることを得意としています。",
+
+        // 作品リスト（手動設定分）
+        // ここに定義されているものは優先して表示されます。
+        // imageFileは "image" フォルダ内のファイル名を指定してください
+        works: [
+  {
+    year: 2025,
+    title: "「自称悪役令嬢な婚約者の観察記録。」原作公式サイト",
+    category: "Web",
+    text: "アニメ原作特設サイトのページデザインおよびKVアニメーションの制作を担当。\nAfter Effectsを用いたアニメーション制作と、CSSアニメーションの指示出しを行いました。\n使用ツール：Adobe XD / After Effects",
+    link: "https://www.alphapolis.co.jp/media/jisho-akuyaku",
+    imageFile: "image1.jpg"
+  },
+
+  /* ↓2作品目*/
+  {
+  year: 2024,
+  title: "「最後にひとつだけおねがいしてもよろしいでしょうか」原作公式サイト",
+  category: "Web",
+  text: "アニメ原作特設サイトのページデザインおよびKVアニメーションのイメージ制作を担当。\nCSSアニメーションの指示出しを行いました。\n使用ツール：Adobe XD",
+  link: "https://www.alphapolis.co.jp/media/saihito",
+  imageFile: "image2.jpg"
+},
+/* ↓3作品目*/
+  {
+  year: 2024,
+  title: "「最推しの義兄を愛でるため、長生きします！」原作公式サイト",
+  category: "Web",
+  text: "アニメ原作特設サイトのページデザインを担当。\nCSSアニメーションの指示出しを行いました。\n使用ツール：Adobe XD",
+  link: "https://www.alphapolis.co.jp/media/saioshi",
+  imageFile: "image3.jpg"
+},
+ /* ↓4作品目*/
+  {
+  year: 2025,
+  title: "「素材採取家の異世界旅行記」原作公式サイト",
+  category: "Web",
+  text: "アニメ原作特設サイトのページデザインを担当。\nCSSアニメーションの指示出しを行いました。\n使用ツール：Adobe XD",
+  link: "https://www.alphapolis.co.jp/media/sozaisaishu",
+  imageFile: "image4.jpg"
+},
+ /* ↓5作品目*/
+  {
+  year: 2023,
+  title: "ノーチェ レーベルサイト",
+  category: "Web",
+  text: "女性向けレーベルサイトのリニューアルデザインを担当。\n世界観やターゲットに合わせた情報設計とビジュアルの整理を行いました。\n使用ツール：Adobe XD",
+  link: "https://noche.alphapolis.co.jp/",
+  imageFile: "image5.jpg"
+},
+ /* ↓6作品目*/
+  {
+  year: 2022,
+  title: "アルファポリス きずな文庫 レーベルサイト",
+  category: "Web",
+  text: "子供向け書籍レーベルサイトの新規立ち上げにおけるデザインを担当。\nレーベルの世界観やターゲットに配慮した情報設計とビジュアル設計を行いました。\n使用ツール：Adobe XD",
+  link: "https://kizuna.alphapolis.co.jp/",
+  imageFile: "image6.jpg"
+},
+ /* ↓7作品目*/
+  {
+  year: 2024,
+  title: "「勘違いの工房主」原作公式サイト",
+  category: "Web",
+  text: "アニメ原作特設サイトのページデザインを担当。\nCSSアニメーションの指示出しを行いました。\n使用ツール：Adobe XD",
+  link: "https://www.alphapolis.co.jp/media/kanchigai",
+  imageFile: "image7.jpg"
+},
+ /* ↓8作品目*/
+  {
+  year: 2025,
+  title: "「転生王子はダラけたい」小説原作サイト",
+  category: "Web",
+  text: "小説原作特設サイトのページデザインを担当。\nCSSアニメーションの指示出しを行いました。\n使用ツール：Adobe XD",
+  link: "https://www.alphapolis.co.jp/media/daraketai",
+  imageFile: "image8.jpg"
+},
+ /* ↓9作品目*/
+  {
+  year: 2020,
+  title: "「月が導く異世界道中」原作公式サイト",
+  category: "Web",
+  text: "アニメ原作特設サイトのページデザインを担当。\n使用ツール：Photoshop",
+  link: "https://www.tsukimichi-alphapolis.com/",
+  imageFile: "image9.jpg"
+},
+ /* ↓10作品目*/
+  {
+  year: 2021,
+  title: "ALPHA MANGA 公式サイト",
+  category: "Web",
+  text: "英語圏向け漫画アプリ「Alpha Manga」の公式サイトデザインを担当。\n英語ユーザーにとって直感的で分かりやすいUI設計を行いました。\n使用ツール：Adobe XD",
+  link: "https://www.alpha-manga.com/",
+  imageFile: "image10.jpg"
+},
+ /* ↓11作品目*/
+  {
+  year: 2024,
+  title: "小説検索アシスタント β",
+  category: "Web",
+  text: "アルファポリス公式サイトにおけるAI検索アシスタント機能追加のデザインを担当。\nAI機能を初めて使うユーザーでも直感的に操作できるよう、導線や画面構成を整理し、既存サイトとの親和性を意識したUI設計を行いました。\n使用ツール：Adobe XD",
+  link: "https://www.alphapolis.co.jp/novel/search_assistant",
+  imageFile: "image11.jpg"
+},
+ {
+  year: 2025,
+  title: "投稿アプリ 小説AI校正",
+  category: "App",
+  text: "小説投稿アプリにおけるAI校正機能追加に伴い、UI/UXデザインを担当。\n既存ユーザーの操作フローを崩さないよう配慮しながら、快適で分かりやすい導線設計を行いました。\n使用ツール：Figma",
+  link: "https://www.alphapolis.co.jp/pages/topic_20251223",
+  imageFile: "image12.jpg"
+},
+ /* ↓13作品目*/
+  {
+  year: 2019,
+  title: "絵本ひろばアプリ",
+  category: "App",
+  text: "子供向け無料絵本アプリ（iOS / Android）のUI/UXデザインを担当。\nスマートフォン・タブレット両対応とし、子供でも迷わず操作できる直感的なUI設計を行いました。\n現在も継続的な改善・改修を担当しています。\n使用ツール：Adobe XD",
+  link: "https://apps.apple.com/jp/app/id1471588949",
+  imageFile: "image13.jpg"
+},
+ /* ↓14作品目*/
+  {
+  year: 2017,
+  title: "絵本ひろば 公式サイト",
+  category: "Web",
+  text: "Web制作｜ビジュアル・進行管理\n\nWeb制作において、初期ラフ作成から進行管理、デザインチェックまでを担当。\nあわせてキャラクターイラストの制作も行い、サービス全体の世界観づくりに貢献しました。\n使用ツール：Adobe XD / Illustrator / Photoshop",
+  link: "https://ehon.alphapolis.co.jp/?from=alphapolis",
+  imageFile: "image14.jpg"
+},
+ /* ↓15作品目*/
+  {
+  year: 2025,
+  title: "漫画家大募集 B1ポスター",
+  category: "Print",
+  text: "イベント告知用B1ポスター\n\n新規ユーザー獲得を目的としたイベント告知用B1ポスターのデザインを担当。\n印刷用の入稿完全データ作成まで対応しました。\n使用ツール：Illustrator / Photoshop",
+  link: "",
+  imageFile: "image15.jpg"
+},
+ /* ↓16作品目*/
+  {
+  year: 2006,
+  title: "NARUTO シールボックス パッケージデザイン",
+  category: "Goods",
+  text: "クライアント：株式会社ムービック\n\n有り型を使用したパッケージ・商品デザインを担当。\nジャンプフェスタにて販売された『NARUTO』シールボックスのデザインを制作しました。\nナルト／サスケの2種類を展開し、キャラクター性を活かしたビジュアル設計を行っています。",
+  link: "",
+  imageFile: "image16.jpg"
+},
+ /* ↓17作品目*/
+  {
+  year: 2006,
+  title: "NARUTO クリアクリップ 台紙デザイン",
+  category: "Goods",
+  text: "クライアント：株式会社ムービック\n\n『NARUTO』クリアクリップ（4種）の台紙デザインおよび抜き型作成を担当。\n漫画『NARUTO』に登場する各キャラクターのイメージに合わせて台紙デザインを行いました。",
+  link: "",
+  imageFile: "image17.jpg"
+},
+ /* ↓18作品目*/
+  {
+  year: 2006,
+  title: "BLEACH チョコクランチBOX パッケージデザイン",
+  category: "Goods",
+  text: "クライアント：株式会社ムービック\n\n有り型を使用したパッケージデザインを担当。\nジャンプフェスタにて販売された『BLEACH』チョコクランチBOXのデザインを制作しました。\nSDキャラクターを用い、女の子向けの可愛らしくPOPなテイストで仕上げています。",
+  link: "",
+  imageFile: "image18.jpg"
+},
+ /* ↓19作品目*/
+  {
+  year: 2006,
+  title: "アフタヌーン40周年記念 グッズデザイン",
+  category: "Goods",
+  text: "クライアント：株式会社ムービック\n\nアフタヌーン40周年記念企画におけるグッズデザインを担当。\n下敷き、ストラップ、Tシャツなど、連載漫画をモチーフにした各種記念グッズのデザインを制作しました。",
+  link: "",
+  imageFile: "image19.jpg"
+},
+ /* ↓20作品目*/
+  {
+  year: 2025,
+  title: "フルグラフィックジップアップパーカー",
+  category: "Goods",
+  text: "キャラクターをイメージしたフルグラフィックのパーカーデザイン\n\nデザインから型紙への展開まで完全入稿データの作成\n使用ツール：Illustrator",
+  link: "",
+  imageFile: "image20.jpg"
+},
+  // …同様に image20 まで続ける
+],
+
+        
+        // サイドバーのリンク設定
+        links: [],
+
+        // フッターのクレジット
+        credit: "NORIKO HILL"
+    };
+
+    // 表示する作品の最大数（この数まで imageX.jpg を自動で探します）
+    const MAX_DISPLAY_COUNT = 20;
+
+
+    /* =================================================================
+       【システム処理エリア】
+       ここから下はプログラムの動作に関わる部分です。
+       カスタマイズ不要の場合は変更しないでください。
+       ================================================================= */
+
+    document.addEventListener('DOMContentLoaded', () => {
+        // --- 1. コンテンツ生成 ---
+        document.getElementById('user-name').innerHTML = monoConfig.name; // brタグ許可のためinnerHTML
+        document.getElementById('user-role').textContent = monoConfig.role;
+        document.getElementById('user-bio').innerHTML = monoConfig.bio.replace(/\n/g, '<br>');
+        document.getElementById('year').textContent = new Date().getFullYear();
+        document.getElementById('site-credit').textContent = monoConfig.credit;
+
+        const linkList = document.getElementById('link-list');
+        monoConfig.links.forEach(link => {
+            const li = document.createElement('li');
+            li.className = 'nav-item';
+            li.innerHTML = `<a href="${link.url}" target="_blank" rel="noopener noreferrer">→ ${link.label}</a>`;
+            linkList.appendChild(li);
+        });
+
+        // --- 自動リスト生成ロジック ---
+        const workList = document.getElementById('work-list');
+        const allWorks = [];
+
+        // 1からMAX_DISPLAY_COUNTまでループ
+        for (let i = 1; i <= MAX_DISPLAY_COUNT; i++) {
+            // monoConfig.works配列のインデックス（0始まり）に対応するものがあるか確認
+            const definedWork = monoConfig.works[i - 1];
+
+            if (definedWork) {
+                // 手動定義があればそれを使う
+                allWorks.push(definedWork);
+            } else {
+                // 定義がなければ自動生成設定を使う (image7.jpg, image8.jpg...)
+                allWorks.push({
+                    title: `Art Work ${i}`, // デフォルトタイトル
+                    category: "Portfolio",  // デフォルトカテゴリ
+                    imageFile: `image${i}.jpg`, // 連番ファイル名
+                    isAuto: true
+                });
+            }
+        }
+
+        allWorks.forEach((work, index) => {
+            const li = document.createElement('li');
+            li.className = 'work-item';
+            li.dataset.index = index;
+            li.setAttribute('tabindex', '0');
+            li.setAttribute('role', 'button');
+            li.setAttribute('aria-label', `${work.title}の詳細を見る`);
+
+            const src = `image/${work.imageFile}`;
+
+            // 画像読み込みエラー時（ファイルが存在しない時）に親要素ごと非表示にする処理を追加
+            // style="display:none" は onerror で即座に消すため
+            li.innerHTML = `
+  <div class="work-image-container">
+    <img src="${src}" class="work-img" alt="${work.title}">
+  </div>
+
+  <div class="work-text">
+    <h3 class="work-title">${work.title}</h3>
+
+    <div class="work-meta">
+      <span class="work-cat">${work.category}</span>
+      <span class="work-year">${work.year ?? ""}</span>
+    </div>
+  </div>
+`;
+
+            
+            // クリックイベント
+            li.addEventListener('click', (e) => openModal(index, e.currentTarget));
+            
+            // エンターキー操作
+            li.addEventListener('keydown', (e) => {
+                if(e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    openModal(index, e.currentTarget);
+                }
+            });
+
+            workList.appendChild(li);
+        });
+
+        // --- 2. アニメーション設定 (Anime.js) ---
+
+        // サイドバーのフェードイン
+        anime({
+            targets: '.sidebar',
+            translateX: [-30, 0],
+            opacity: [0, 1],
+            easing: 'easeOutExpo',
+            duration: 1500,
+            delay: 200
+        });
+
+        // スクロール連動アニメーション
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px 0px -10% 0px',
+            threshold: 0
+        };
+
+        const observer = new IntersectionObserver((entries, obs) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // 画像がない(onerrorで消えた)要素はターゲットにしない
+                    if (entry.target.parentElement) { 
+                        anime({
+                            targets: entry.target,
+                            opacity: [0, 1],
+                            translateY: [30, 0],
+                            easing: 'easeOutCubic',
+                            duration: 800
+                        });
+                        obs.unobserve(entry.target);
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // 少し遅延させてから監視を開始（DOM追加とonerror処理の競合回避）
+        setTimeout(() => {
+            document.querySelectorAll('.work-item').forEach(item => {
+                observer.observe(item);
+            });
+        }, 100);
+
+        // --- 3. モーダル制御 ---
+        const modal = document.getElementById('modal');
+        const modalImg = document.getElementById('modal-img');
+        const modalTitle = document.getElementById('modal-title');
+        const modalCat = document.getElementById('modal-category');
+        const closeBtn = document.getElementById('modal-close');
+        const modalDesc = document.getElementById('modal-desc');
+        const modalLink = document.getElementById('modal-link');
+        const modalYear = document.getElementById('modal-year');
+
+
+        function openModal(index, targetElement) {
+            const work = allWorks[index]; // allWorksを参照するように変更
+            const src = `image/${work.imageFile}`;
+            
+            modalImg.src = src;
+            modalImg.alt = work.title;
+            modalTitle.textContent = work.title;
+modalCat.textContent = work.category || "";
+modalYear.textContent = work.year ? String(work.year) : "";
+
+
+            
+            // 説明文（\n を <br> に変換）
+            modalDesc.innerHTML = (work.text || "").replace(/\n/g, "<br>");
+
+            // リンク（空なら非表示）
+            if (work.link && work.link.trim() !== "") {
+              modalLink.href = work.link;
+             modalLink.style.display = "inline-flex";
+            } else {
+              modalLink.style.display = "none";
+            }
+
+
+            // クリック時のバウンドエフェクト
+            anime({
+                targets: targetElement,
+                scale: [1, 0.95, 1],
+                duration: 300,
+                easing: 'easeInOutQuad',
+                complete: () => {
+                    modal.style.visibility = 'visible';
+                    closeBtn.focus(); 
+
+                    const tl = anime.timeline({
+                        easing: 'easeOutExpo',
+                        // durationは個別に設定するため削除、またはデフォルトとして利用
+                    });
+
+                    // 修正箇所：モーダルアニメーションのテンポ調整
+                    tl
+                    .add({
+                        targets: modal,
+                        opacity: [0, 1],
+                        duration: 300, // 背景の出現を少し早く
+                        easing: 'linear'
+                    })
+                    .add({
+                        targets: modalImg,
+                        opacity: [0, 1],
+                        scale: [1.1, 1],
+                        duration: 600, // 画像出現時間
+                        offset: '-=150' // 背景と少し被らせる
+                    })
+                    .add({
+                        targets: '.modal-details',
+                        opacity: [0, 1],
+                        translateY: [30, 0],
+                        duration: 500, // テキスト出現時間
+                        offset: '-=500' // 画像出現開始の直後からテキストも出し始める（スナッピーにする）
+                    })
+                    .add({
+                        targets: closeBtn,
+                        opacity: [0, 1],
+                        duration: 400,
+                        offset: '-=400'
+                    });
+                }
+            });
+        }
+
+        function closeModal() {
+            anime({
+                targets: modal,
+                opacity: 0,
+                duration: 300,
+                easing: 'easeInQuad',
+                complete: () => {
+                    modal.style.visibility = 'hidden';
+                    modalImg.src = '';
+                    anime.set(modalImg, { opacity: 0, scale: 1.1 });
+                    anime.set('.modal-details', { opacity: 0, translateY: 30 });
+                    anime.set(closeBtn, { opacity: 0 });
+                }
+            });
+        }
+
+        closeBtn.addEventListener('click', closeModal);
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal.style.visibility === 'visible') {
+                closeModal();
+            }
+        });
+    });
+</script>
+</body>
+</html>
