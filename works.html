@@ -80,7 +80,6 @@
                 margin-left: 25%;
                 width: 75%;
                 padding: 4rem;
-                margin-top: 30px;
                 /* box-sizing: border-box; は全体設定に移動済み */
             }
         }
@@ -101,7 +100,6 @@
                 width: 100%;
                 margin: 0;
                 padding: 3rem 1.5rem;
-                padding-top: 30px;
             }
             .sidebar-footer {
                 margin-top: 3rem;
@@ -470,181 +468,6 @@
   }
 }
 
-/* =========================================
-   Profile page (main content only)
-   ========================================= */
-.profile-page{
-  max-width: 860px;
-}
-
-.profile-hero{
-  margin-bottom: 2rem;
-  padding-bottom: 1.5rem;
-  border-bottom: 1px solid var(--accent-color);
-}
-
-.profile-title{
-  font-size: 0.875rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--text-sub);
-  margin: 0 0 0.75rem;
-}
-
-.profile-lead{
-  font-size: 1.25rem;
-  font-weight: 600;
-  line-height: 1.4;
-  margin: 0;
-}
-
-.profile-section{
-  margin-top: 2.25rem;
-}
-
-.profile-h{
-  font-size: 0.95rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  margin: 0 0 0.75rem;
-}
-
-.profile-text,
-.profile-section p{
-  margin: 0;
-  color: var(--text-main);
-}
-
-.profile-list{
-  margin: 0;
-  padding-left: 1.1rem;
-}
-
-.profile-list li{
-  margin: 0.35rem 0;
-  color: var(--text-main);
-}
-
-.skill-block{
-  padding: 1rem 0;
-  border-top: 1px solid rgba(0,0,0,0.08);
-}
-
-.skill-block:first-of-type{
-  border-top: none;
-  padding-top: 0;
-}
-
-.skill-label{
-  font-size: 0.8rem;
-  color: var(--text-sub);
-  margin: 0 0 0.25rem;
-}
-
-.skill-items{
-  margin: 0;
-}
-
-.profile-actions{
-  margin-top: 3rem;
-}
-
-.profile-btn{
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  padding: 0.7rem 1rem;
-  border: 1px solid rgba(0,0,0,0.22);
-  border-radius: 999px;
-  background: rgba(0,0,0,0.03);
-  font-size: 0.9rem;
-}
-
-.profile-btn:hover{
-  border-color: rgba(0,0,0,0.35);
-  background: rgba(0,0,0,0.05);
-}
-/* index main fade-in initial state */
-.profile-page {
-  opacity: 0;
-  transform: translateY(30px);
-}
-/* ===== index compact layout ===== */
-.profile-hero{
-  margin-bottom: 1rem;
-  padding-bottom: 1rem;
-}
-
-.profile-lead{
-  font-size: 1.1rem;
-}
-
-.profile-section{ margin-top: 1.2rem; } /* 旧設定を圧縮 */
-
-.profile-compact{
-  margin-top: 0.75rem;
-}
-
-.profile-copy{
-  margin: 0 0 0.9rem;
-  font-size: 0.95rem;
-  line-height: 1.65;
-}
-
-.profile-meta{
-  display: grid;
-  gap: 0.55rem;
-  border-top: 1px solid rgba(0,0,0,0.08);
-  padding-top: 0.9rem;
-}
-
-.meta-row{
-  display: grid;
-  grid-template-columns: 90px 1fr;
-  gap: 0.75rem;
-  align-items: baseline;
-}
-
-.meta-k{
-  font-size: 0.78rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--text-sub);
-}
-
-.meta-v{
-  font-size: 0.92rem;
-}
-
-.featured-works{
-  margin-top: 1.6rem;
-}
-
-.featured-head{
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  margin-bottom: 0.8rem;
-  padding-top: 0.4rem;
-  border-top: 1px solid rgba(0,0,0,0.08);
-}
-
-.featured-link{
-  font-size: 0.85rem;
-  color: var(--text-sub);
-}
-
-
-
-/* ファーストビュー収まり調整（PC） */
-@media (min-width: 1024px){
-  .main-content{
-    padding-top: 3.2rem; /* 4rem→少し圧縮。必要なら 3rem までOK */
-    padding-bottom: 3.2rem;
-  }
-}
-
-
     </style>
 </head>
 <body>
@@ -666,60 +489,8 @@
     </aside>
 
     <main class="main-content">
-  <div class="fadein-up" id="profile-anim">
-
-    <section class="profile-page" id="profile">
-      <header class="profile-hero">
-        <h2 class="profile-title">PROFILE</h2>
-        <p class="profile-lead">グラフィックデザイナー／Webデザイナー（実務経験23年）</p>
-      </header>
-
-      <div class="profile-compact">
-        <p class="profile-copy">
-          2003年より活動開始。文脈や情緒のニュアンスを深く解釈し、理想と要件を
-          <strong>論理性と感性の両立したデザイン</strong>へ落とし込みます。現在は漫画・小説を軸としたエンタメ領域で
-          Web / アプリ / グラフィックを横断して担当。
-        </p>
-
-        <div class="profile-meta">
-          <div class="meta-row">
-            <span class="meta-k">Journey</span>
-            <span class="meta-v">アルファポリス（2016–現在） / LIPS / ベストプランニング / Freelance</span>
-          </div>
-          <div class="meta-row">
-            <span class="meta-k">Strength</span>
-            <span class="meta-v">トレンド反映・要件整理・横断設計</span>
-          </div>
-          <div class="meta-row">
-            <span class="meta-k">Tools</span>
-            <span class="meta-v">Figma / XD / Ai / Ps（+ Ae / Id）</span>
-          </div>
-          <div class="meta-row">
-            <span class="meta-k">Lang</span>
-            <span class="meta-v">EN：日常〜ビジネス初級（英検2級）</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="profile-actions">
-        <a class="profile-btn" href="works.html">View all works →</a>
-      </div>
-    </section>
-
-    <section class="featured-works" id="featured">
-      <div class="featured-head">
-        <h2 class="profile-title">FEATURED</h2>
-        <a class="featured-link" href="works.html">All works →</a>
-      </div>
-
-      <!-- 代表作3件をここに出す（worksと同じカード） -->
-      <ul id="featured-work-list" class="work-list"></ul>
-    </section>
-
-  </div>
-</main>
-
-
+        <ul id="work-list" class="work-list"></ul>
+    </main>
 </div>
 
 <div class="modal-overlay" id="modal">
@@ -744,6 +515,8 @@
 </div>
 
 
+    </div>
+</div>
 
 <script>
     /* =================================================================
@@ -950,7 +723,7 @@
         // サイドバーのリンク設定
         links: [
   { label: "Profile", url: "index.html" },
-  { label: "Works", url: "works.html" }
+  { label: "Works",   url: "works.html" }
 ],
 
 
@@ -982,43 +755,74 @@
             li.className = 'nav-item';
             li.innerHTML = `<a href="${link.url}">→ ${link.label}</a>`;
             linkList.appendChild(li);
-
         });
-        // --- Featured works（3件）をカード生成 ---
-const featuredListEl = document.getElementById('featured-work-list');
 
-// 代表作：先頭3件（必要なら後述の「固定指定」方式に変更OK）
-const featuredWorks = (monoConfig.works || []).slice(0, 3);
+        // --- 自動リスト生成ロジック ---
+        const workList = document.getElementById('work-list');
+        const allWorks = [];
 
-featuredWorks.forEach((work) => {
-  const li = document.createElement('li');
-  li.className = 'work-item';
-  li.tabIndex = 0;
+        // 1からMAX_DISPLAY_COUNTまでループ
+        for (let i = 1; i <= MAX_DISPLAY_COUNT; i++) {
+            // monoConfig.works配列のインデックス（0始まり）に対応するものがあるか確認
+            const definedWork = monoConfig.works[i - 1];
 
-  li.innerHTML = `
-    <div class="work-image-container">
-      <img class="work-img" src="image/${work.imageFile}" alt="${work.title}">
+            if (definedWork) {
+                // 手動定義があればそれを使う
+                allWorks.push(definedWork);
+            } else {
+                // 定義がなければ自動生成設定を使う (image7.jpg, image8.jpg...)
+                allWorks.push({
+                    title: `Art Work ${i}`, // デフォルトタイトル
+                    category: "Portfolio",  // デフォルトカテゴリ
+                    imageFile: `image${i}.jpg`, // 連番ファイル名
+                    isAuto: true
+                });
+            }
+        }
+
+        allWorks.forEach((work, index) => {
+            const li = document.createElement('li');
+            li.className = 'work-item';
+            li.dataset.index = index;
+            li.setAttribute('tabindex', '0');
+            li.setAttribute('role', 'button');
+            li.setAttribute('aria-label', `${work.title}の詳細を見る`);
+
+            const src = `image/${work.imageFile}`;
+
+            // 画像読み込みエラー時（ファイルが存在しない時）に親要素ごと非表示にする処理を追加
+            // style="display:none" は onerror で即座に消すため
+            li.innerHTML = `
+  <div class="work-image-container">
+    <img src="${src}" class="work-img" alt="${work.title}">
+  </div>
+
+  <div class="work-text">
+    <h3 class="work-title">${work.title}</h3>
+
+    <div class="work-meta">
+      <span class="work-cat">${work.category}</span>
+      <span class="work-year">${work.year ?? ""}</span>
     </div>
-    <div class="work-info">
-      <div class="work-title">${work.title}</div>
-      <div class="work-meta">
-        <span class="work-cat">${work.category}</span>
-        <span class="work-year">${work.year ?? ""}</span>
-      </div>
-    </div>
-  `;
+  </div>
+`;
 
-  // クリック/Enterでモーダル表示（indexにモーダルがあるので使う）
-  li.addEventListener('click', () => openModal(work));
-  li.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter' || e.key === ' ') openModal(work);
-  });
+            
+            // クリックイベント
+            li.addEventListener('click', (e) => openModal(index, e.currentTarget));
+            
+            // エンターキー操作
+            li.addEventListener('keydown', (e) => {
+                if(e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    openModal(index, e.currentTarget);
+                }
+            });
 
-  featuredListEl.appendChild(li);
-});
+            workList.appendChild(li);
+        });
 
-        
-       // --- 2. アニメーション設定 (Anime.js) ---
+        // --- 2. アニメーション設定 (Anime.js) ---
 
         // サイドバーのフェードイン
         anime({
@@ -1061,17 +865,114 @@ featuredWorks.forEach((work) => {
                 observer.observe(item);
             });
         }, 100);
-        // index main-content（profile）フェードイン
-        anime({
-          targets: '.profile-page',
-          opacity: [0, 1],
-          translateY: [30, 0],
-          easing: 'easeOutCubic',
-          duration: 900,
-          delay: 350   // サイドバーより少し遅らせる
-        });
 
-       
+        // --- 3. モーダル制御 ---
+        const modal = document.getElementById('modal');
+        const modalImg = document.getElementById('modal-img');
+        const modalTitle = document.getElementById('modal-title');
+        const modalCat = document.getElementById('modal-category');
+        const closeBtn = document.getElementById('modal-close');
+        const modalDesc = document.getElementById('modal-desc');
+        const modalLink = document.getElementById('modal-link');
+        const modalYear = document.getElementById('modal-year');
+
+
+        function openModal(index, targetElement) {
+            const work = allWorks[index]; // allWorksを参照するように変更
+            const src = `image/${work.imageFile}`;
+            
+            modalImg.src = src;
+            modalImg.alt = work.title;
+            modalTitle.textContent = work.title;
+modalCat.textContent = work.category || "";
+modalYear.textContent = work.year ? String(work.year) : "";
+
+
+            
+            // 説明文（\n を <br> に変換）
+            modalDesc.innerHTML = (work.text || "").replace(/\n/g, "<br>");
+
+            // リンク（空なら非表示）
+            if (work.link && work.link.trim() !== "") {
+              modalLink.href = work.link;
+             modalLink.style.display = "inline-flex";
+            } else {
+              modalLink.style.display = "none";
+            }
+
+
+            // クリック時のバウンドエフェクト
+            anime({
+                targets: targetElement,
+                scale: [1, 0.95, 1],
+                duration: 300,
+                easing: 'easeInOutQuad',
+                complete: () => {
+                    modal.style.visibility = 'visible';
+                    closeBtn.focus(); 
+
+                    const tl = anime.timeline({
+                        easing: 'easeOutExpo',
+                        // durationは個別に設定するため削除、またはデフォルトとして利用
+                    });
+
+                    // 修正箇所：モーダルアニメーションのテンポ調整
+                    tl
+                    .add({
+                        targets: modal,
+                        opacity: [0, 1],
+                        duration: 300, // 背景の出現を少し早く
+                        easing: 'linear'
+                    })
+                    .add({
+                        targets: modalImg,
+                        opacity: [0, 1],
+                        scale: [1.1, 1],
+                        duration: 600, // 画像出現時間
+                        offset: '-=150' // 背景と少し被らせる
+                    })
+                    .add({
+                        targets: '.modal-details',
+                        opacity: [0, 1],
+                        translateY: [30, 0],
+                        duration: 500, // テキスト出現時間
+                        offset: '-=500' // 画像出現開始の直後からテキストも出し始める（スナッピーにする）
+                    })
+                    .add({
+                        targets: closeBtn,
+                        opacity: [0, 1],
+                        duration: 400,
+                        offset: '-=400'
+                    });
+                }
+            });
+        }
+
+        function closeModal() {
+            anime({
+                targets: modal,
+                opacity: 0,
+                duration: 300,
+                easing: 'easeInQuad',
+                complete: () => {
+                    modal.style.visibility = 'hidden';
+                    modalImg.src = '';
+                    anime.set(modalImg, { opacity: 0, scale: 1.1 });
+                    anime.set('.modal-details', { opacity: 0, translateY: 30 });
+                    anime.set(closeBtn, { opacity: 0 });
+                }
+            });
+        }
+
+        closeBtn.addEventListener('click', closeModal);
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal.style.visibility === 'visible') {
+                closeModal();
+            }
+        });
     });
 </script>
 </body>
