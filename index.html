@@ -410,10 +410,8 @@
   background: rgba(0,0,0,0.03);
 }
 
-.modal-link:hover{
-  border-color: rgba(0,0,0,0.35);
-  background: rgba(0,0,0,0.05);
-}
+.modal-link{ color: #fff; } 
+
 /* ===== Modal meta (category + year) ===== */
 .modal-meta{
   display: flex;
@@ -605,7 +603,7 @@
 }
 
 .featured-works{
-  margin-top: 4rem;
+  margin-top: 6rem;
 }
 
 .featured-head{
@@ -623,13 +621,6 @@
 
 
 
-/* ファーストビュー収まり調整（PC） */
-@media (min-width: 1024px){
-  .main-content{
-    padding-top: 3.2rem; /* 4rem→少し圧縮。必要なら 3rem までOK */
-    padding-bottom: 3.2rem;
-  }
-}
 /* Featured card meta (category + year) */
 .work-info{
   display: block;           /* ← 横並び事故を止める */
@@ -653,6 +644,20 @@
   border-bottom: none;
 }
 
+/* モーダル内のリンクは常に明るく */
+.modal-details a{
+  color: #fff;
+}
+
+/* Visit site ボタンの通常色・枠もモーダル用に */
+.modal-details .modal-link{
+  color: #fff;
+}
+
+/* hover時：暗くならないように上書き（a:hover対策） */
+.modal-details .modal-link:hover{
+  color: #aab7ff; /* 好きな色に */
+}
 
     </style>
 </head>

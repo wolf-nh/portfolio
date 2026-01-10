@@ -468,6 +468,21 @@
   }
 }
 
+/* モーダル内のリンクは常に明るく */
+.modal-details a{
+  color: #fff;
+}
+
+/* Visit site ボタンの通常色・枠もモーダル用に */
+.modal-details .modal-link{
+  color: #fff;
+}
+
+/* hover時：暗くならないように上書き（a:hover対策） */
+.modal-details .modal-link:hover{
+  color: #aab7ff; /* 好きな色に */
+}
+
     </style>
 </head>
 <body>
