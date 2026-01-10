@@ -80,7 +80,6 @@
                 margin-left: 25%;
                 width: 75%;
                 padding: 4rem;
-                margin-top: 30px;
                 /* box-sizing: border-box; は全体設定に移動済み */
             }
         }
@@ -473,9 +472,7 @@
 /* =========================================
    Profile page (main content only)
    ========================================= */
-.profile-page{
-  max-width: 860px;
-}
+
 
 .profile-hero{
   margin-bottom: 2rem;
@@ -492,7 +489,7 @@
 }
 
 .profile-lead{
-  font-size: 1.25rem;
+  font-size: 1rem;
   font-weight: 600;
   line-height: 1.4;
   margin: 0;
@@ -545,10 +542,6 @@
   margin: 0;
 }
 
-.profile-actions{
-  margin-top: 3rem;
-}
-
 .profile-btn{
   display: inline-flex;
   align-items: center;
@@ -568,6 +561,7 @@
 .profile-page {
   opacity: 0;
   transform: translateY(30px);
+  color: #191919;
 }
 /* ===== index compact layout ===== */
 .profile-hero{
@@ -575,9 +569,6 @@
   padding-bottom: 1rem;
 }
 
-.profile-lead{
-  font-size: 1.1rem;
-}
 
 .profile-section{ margin-top: 1.2rem; } /* 旧設定を圧縮 */
 
@@ -587,37 +578,34 @@
 
 .profile-copy{
   margin: 0 0 0.9rem;
-  font-size: 0.95rem;
+  font-size: 0.875rem;
   line-height: 1.65;
 }
 
 .profile-meta{
   display: grid;
-  gap: 0.55rem;
-  border-top: 1px solid rgba(0,0,0,0.08);
   padding-top: 0.9rem;
 }
 
 .meta-row{
   display: grid;
   grid-template-columns: 90px 1fr;
-  gap: 0.75rem;
   align-items: baseline;
 }
 
 .meta-k{
-  font-size: 0.78rem;
+  font-size: 0.75rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--text-sub);
 }
 
 .meta-v{
-  font-size: 0.92rem;
+  font-size: 0.75rem;
 }
 
 .featured-works{
-  margin-top: 1.6rem;
+  margin-top: 4rem;
 }
 
 .featured-head{
@@ -626,7 +614,6 @@
   justify-content: space-between;
   margin-bottom: 0.8rem;
   padding-top: 0.4rem;
-  border-top: 1px solid rgba(0,0,0,0.08);
 }
 
 .featured-link{
@@ -642,6 +629,28 @@
     padding-top: 3.2rem; /* 4rem→少し圧縮。必要なら 3rem までOK */
     padding-bottom: 3.2rem;
   }
+}
+/* Featured card meta (category + year) */
+.work-info{
+  display: block;           /* ← 横並び事故を止める */
+}
+
+.work-meta{
+  display: flex;            /* ← カテゴリと年はここで横並び */
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 0.6rem;
+}
+
+.work-year{
+  font-size: 0.75rem;
+  opacity: 0.7;
+  white-space: nowrap;
+}
+
+/* FEATURED のカード下線を消す（犯人は .work-info の border-bottom） */
+.featured-works .work-info{
+  border-bottom: none;
 }
 
 
@@ -671,50 +680,52 @@
     <section class="profile-page" id="profile">
       <header class="profile-hero">
         <h2 class="profile-title">PROFILE</h2>
-        <p class="profile-lead">グラフィックデザイナー／Webデザイナー（実務経験23年）</p>
+        <p class="profile-lead">Wdbデザイナー／グラフィックデザイナー</p>
       </header>
 
       <div class="profile-compact">
         <p class="profile-copy">
-          2003年より活動開始。文脈や情緒のニュアンスを深く解釈し、理想と要件を
-          <strong>論理性と感性の両立したデザイン</strong>へ落とし込みます。現在は漫画・小説を軸としたエンタメ領域で
-          Web / アプリ / グラフィックを横断して担当。
+          実務経験23年。<br>
+          女子美術大学短期大学部造形科情報デザイン専攻卒業後、2003年よりデザイナーとして活動開始。<br>
+          文脈や情緒のニュアンスを深く解釈し、理想と要件を論理性と感性の両立したデザインへ落とし込むのを得意とする。<br>
+          現在は漫画・小説を軸としたエンタメ領域で、Web / アプリ / グラフィックを横断して担当。
         </p>
 
         <div class="profile-meta">
           <div class="meta-row">
             <span class="meta-k">Journey</span>
-            <span class="meta-v">アルファポリス（2016–現在） / LIPS / ベストプランニング / Freelance</span>
+            <span class="meta-v">株式会社アルファポリス（2016–現在） / 有限会社LIPS / 株式会社ベストプランニング / フリーランス他</span>
           </div>
           <div class="meta-row">
             <span class="meta-k">Strength</span>
-            <span class="meta-v">トレンド反映・要件整理・横断設計</span>
+            <span class="meta-v">トレンド・要件を踏まえたビジュアル提案、グラフィックとWebを横断した一貫性のあるデザイン、フロントエンド知識</span>
           </div>
           <div class="meta-row">
             <span class="meta-k">Tools</span>
-            <span class="meta-v">Figma / XD / Ai / Ps（+ Ae / Id）</span>
+            <span class="meta-v">XD（11年） / Figma（2年） / Illustrator（22年） / Photoshop（22年） / Affter Effects（2年） / Zepplin（7年）</span>
           </div>
           <div class="meta-row">
             <span class="meta-k">Lang</span>
             <span class="meta-v">EN：日常〜ビジネス初級（英検2級）</span>
           </div>
+          <div class="meta-row">
+            <span class="meta-k">Hobbys</span>
+            <span class="meta-v">漫画・アニメ／かぎ針／アクセサリー制作／グッズ制作</span>
+          </div>
         </div>
       </div>
-
-      <div class="profile-actions">
-        <a class="profile-btn" href="works.html">View all works →</a>
-      </div>
-    </section>
-
-    <section class="featured-works" id="featured">
+       <section class="featured-works" id="featured">
       <div class="featured-head">
         <h2 class="profile-title">FEATURED</h2>
-        <a class="featured-link" href="works.html">All works →</a>
+        <a class="featured-link" href="works.html">View All works →</a>
       </div>
 
       <!-- 代表作3件をここに出す（worksと同じカード） -->
       <ul id="featured-work-list" class="work-list"></ul>
     </section>
+    </section>
+
+   
 
   </div>
 </main>
@@ -990,7 +1001,7 @@ const featuredListEl = document.getElementById('featured-work-list');
 // 代表作：先頭3件（必要なら後述の「固定指定」方式に変更OK）
 const featuredWorks = (monoConfig.works || []).slice(0, 3);
 
-featuredWorks.forEach((work) => {
+featuredWorks.forEach((work, index) => {
   const li = document.createElement('li');
   li.className = 'work-item';
   li.tabIndex = 0;
@@ -1008,14 +1019,19 @@ featuredWorks.forEach((work) => {
     </div>
   `;
 
-  // クリック/Enterでモーダル表示（indexにモーダルがあるので使う）
-  li.addEventListener('click', () => openModal(work));
+  // ✅ works.html と同じ呼び出しにする
+  li.addEventListener('click', (e) => openModal(work, e.currentTarget));
   li.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter' || e.key === ' ') openModal(work);
-  });
+  if (e.key === 'Enter' || e.key === ' ') {
+    e.preventDefault();
+    openModal(work, li);
+  }
+});
+
 
   featuredListEl.appendChild(li);
 });
+
 
         
        // --- 2. アニメーション設定 (Anime.js) ---
@@ -1071,8 +1087,108 @@ featuredWorks.forEach((work) => {
           delay: 350   // サイドバーより少し遅らせる
         });
 
-       
+                // --- 3. モーダル制御 ---
+
+       const modal = document.getElementById('modal');
+        const modalImg = document.getElementById('modal-img');
+        const modalTitle = document.getElementById('modal-title');
+        const modalCat = document.getElementById('modal-category');
+        const closeBtn = document.getElementById('modal-close');
+        const modalDesc = document.getElementById('modal-desc');
+        const modalLink = document.getElementById('modal-link');
+        const modalYear = document.getElementById('modal-year');
+
+
+        function openModal(work, targetElement) {
+  if (!work) return;
+
+  const src = `image/${work.imageFile}`;
+
+  modalImg.src = src;
+  modalImg.alt = work.title || '';
+  modalTitle.textContent = work.title || '';
+  modalCat.textContent = work.category || "";
+  modalYear.textContent = work.year ? String(work.year) : "";
+
+  modalDesc.innerHTML = (work.text || "").replace(/\n/g, "<br>");
+
+  if (work.link && work.link.trim() !== "") {
+    modalLink.href = work.link;
+    modalLink.style.display = "inline-flex";
+  } else {
+    modalLink.style.display = "none";
+  }
+
+  // クリック時のバウンド → 表示
+  anime({
+    targets: targetElement,
+    scale: [1, 0.97, 1],
+    duration: 250,
+    easing: 'easeInOutQuad',
+    complete: () => {
+      modal.style.visibility = 'visible';
+      closeBtn.focus();
+
+      const tl = anime.timeline({ easing: 'easeOutExpo' });
+      tl
+        .add({
+          targets: modal,
+          opacity: [0, 1],
+          duration: 250,
+          easing: 'linear'
+        })
+        .add({
+          targets: modalImg,
+          opacity: [0, 1],
+          scale: [1.05, 1],
+          duration: 450,
+          offset: '-=120'
+        })
+        .add({
+          targets: '.modal-details',
+          opacity: [0, 1],
+          translateY: [20, 0],
+          duration: 420,
+          offset: '-=360'
+        })
+        .add({
+          targets: closeBtn,
+          opacity: [0, 1],
+          duration: 300,
+          offset: '-=300'
+        });
+    }
+  });
+}
+
+
+        function closeModal() {
+            anime({
+                targets: modal,
+                opacity: 0,
+                duration: 300,
+                easing: 'easeInQuad',
+                complete: () => {
+                    modal.style.visibility = 'hidden';
+                    modalImg.src = '';
+                    anime.set(modalImg, { opacity: 0, scale: 1.1 });
+                    anime.set('.modal-details', { opacity: 0, translateY: 30 });
+                    anime.set(closeBtn, { opacity: 0 });
+                }
+            });
+        }
+
+        closeBtn.addEventListener('click', closeModal);
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal.style.visibility === 'visible') {
+                closeModal();
+            }
+        });
     });
+    
 </script>
 </body>
 </html>
