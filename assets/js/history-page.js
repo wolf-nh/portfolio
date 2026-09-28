@@ -22,6 +22,9 @@
     facts.append(dt, dd);
   });
   if (!facts.children.length) facts.remove();
+  const note = document.getElementById("profile-note");
+  if (PROFILE.note) note.textContent = PROFILE.note;
+  else note.remove();
 
   // プロフィールの文字：マウスを止めるとにじむ（sticky を保つため、中身を1つの箱にまとめてから）
   const profile = document.querySelector(".profile");
@@ -32,7 +35,8 @@
 
   /* ---------- 年表 ---------- */
   const timeline = document.getElementById("timeline");
-  HISTORY.forEach((item) => {
+  // data/history.js は古い順に書き、表示は新しい順（上が最新）
+  HISTORY.slice().reverse().forEach((item) => {
     const li = document.createElement("li");
     li.className = "event";
     li.innerHTML = `
@@ -72,6 +76,16 @@
     if (window.Ink) window.Ink.bleedOnDwell(li.querySelector(".event__text"), { radius: 56 });
   });
   if (window.Ink) window.Ink.bleedOnDwell(profileInner, { radius: 64 });
+
+  // プロフィールが画面に収まるときだけ、スクロールしても残るように固定する
+  const header = document.querySelector(".site-header");
+  function updateSticky() {
+    const room = window.innerHeight - header.offsetHeight - 48 - 24;
+    profile.classList.toggle("is-static", profile.offsetHeight > room);
+  }
+  updateSticky();
+  window.addEventListener("resize", updateSticky);
+  if (document.fonts) document.fonts.ready.then(updateSticky);
 
   /* ---------- 画面に入った項目から浮かび上がる ---------- */
   const events = [...timeline.children];

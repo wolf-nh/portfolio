@@ -1,6 +1,7 @@
 /* =================================================================
    経歴（history ページ）
    - works には data/works.js の id を並べます。サムネイルとして表示されます。
+   - ここには古い順に書きます。ページでは新しい順（上が最新）に表示されます。
    ================================================================= */
 window.HISTORY = [
   {
@@ -25,7 +26,7 @@ window.HISTORY = [
     date: "2004.06",
     title: "有限会社リップス　入社",
     note: "",
-    works: ["naruto-sealbox", "naruto-clip", "bleach-choco", "afternoon40"],
+    works: ["sailor-pica", "naruto-sealbox", "naruto-clip", "bleach-choco", "afternoon40"],
   },
   {
     date: "2006.11 — 現在",

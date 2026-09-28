@@ -13,7 +13,10 @@ window.PROFILE = {
   facts: [
     { label: "Tools", value: "Figma / XD / Illustrator / Photoshop / After Effects" },
     { label: "AI", value: "ChatGPT / Claude" },
-    { label: "Language", value: "英語（英検2級）" },
+    { label: "Language", value: "日本語・英語（英検2級）" },
     { label: "Hobby", value: "漫画・アニメ／音楽／かぎ針／アクセサリー制作／グッズ制作／シルクスクリーン" },
   ],
+
+  // 補足の下に、線で区切って表示する一文（不要なら "" に）
+  note: "このポートフォリオサイトは、手書きのラフを元にClaude Codeを使用して制作しています。",
 };

@@ -315,6 +315,24 @@ window.WORKS = [
     print: "", printShape: "portrait", focus: "center", top: 0,
   },
   {
+    id: "sailor-pica",
+    group: "Print",
+    year: 2006,
+    title: "セーラー万年筆「セラピカ」販促ツール",
+    lead: "ロゴ制作から撮影・展示会まで、ブランドの見せ方をトータルで担当",
+    category: "Print / Branding",
+    text:
+      "セーラー万年筆の新商品「セラピカ」の販促ツール一式を制作。\n\n" +
+      "商品ロゴの制作からモデルの選定、撮影への同行、展示会への参加まで、制作のほぼすべての工程に関わり、ブランドの見せ方をトータルで企画しました。\n\n" +
+      "制作物：A4二つ折りパンフレット／A4差し込み／B3縦1/2ポスター／スウィングPOP／メモパッド",
+    link: "",
+    images: [
+      "images/works/sailor-pica-1.webp",
+      "images/works/sailor-pica-2.webp",
+    ],
+    print: "", printShape: "landscape", focus: "center", top: 0,
+  },
+  {
     id: "naruto-sealbox",
     group: "Goods",
     year: 2006,
@@ -359,11 +377,11 @@ window.WORKS = [
     id: "afternoon40",
     group: "Goods",
     year: 2006,
-    title: "アフタヌーン40周年記念 グッズデザイン",
+    title: "アフタヌーン20周年記念グッズ ほか",
     category: "Goods",
     text:
-      "クライアント：株式会社ムービック\n\nアフタヌーン40周年記念企画におけるグッズデザインを担当。\n" +
-      "下敷き、ストラップ、Tシャツなど、連載漫画をモチーフにした各種記念グッズのデザインを制作しました。",
+      "クライアント：株式会社ムービック\n\n" +
+      "アフタヌーン20周年記念企画では、連載漫画をモチーフにした下敷き・ストラップ・Tシャツなどの記念グッズを制作。その他映画グッズやキャラクターグッズを多数担当。",
     link: "",
     images: ["images/works/afternoon40.jpg"],
     print: "", printShape: "portrait", focus: "center", top: 0,

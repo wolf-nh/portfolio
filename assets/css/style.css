@@ -536,6 +536,17 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
   mask-image: var(--m);
 }
 
+/* 読むページ：スクロールした内容がヘッダーの下に溶けて隠れるように */
+.page-works .site-header::before,
+.page-history .site-header::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 -28px 0;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(to bottom, #07090c 0%, rgba(7, 9, 12, 0.92) 62%, rgba(7, 9, 12, 0) 100%);
+}
+
 /* 今いるページ */
 .site-nav a[aria-current="page"] { color: var(--fg); }
 
@@ -729,7 +740,8 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
   gap: clamp(40px, 7vw, 110px);
   max-width: 1180px;
   margin: 0 auto;
-  padding: calc(var(--header-h) + 48px) clamp(16px, 4vw, 48px) 140px;
+  /* 下の余白は年表側に持たせ、プロフィールの固定範囲をページの一番下まで続ける */
+  padding: calc(var(--header-h) + 48px) clamp(16px, 4vw, 48px) 0;
 }
 
 /* 左：プロフィール（スクロールしても残る）。読み込み時に左から順にすっと入る */
@@ -741,6 +753,8 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
   to   { opacity: 1; translate: 0 0; }
 }
 .profile { position: sticky; top: calc(var(--header-h) + 48px); align-self: start; }
+/* 画面に収まらないほど長いときは固定しない（下端でヘッダーに押し上げられるのを防ぐ） */
+.profile.is-static { position: static; }
 .profile__name {
   margin: 0 0 4px;
   font-family: var(--font-serif);
@@ -760,7 +774,7 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
   display: grid;
   grid-template-columns: auto 1fr;
   gap: 6px 16px;
-  margin: 24px 0 0;
+  margin: 20px 0 0;
   padding-top: 20px;
   border-top: 1px solid var(--line);
   font-size: 12px;
@@ -769,20 +783,31 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 }
 .profile__facts dt { font-family: var(--font-serif); font-style: italic; font-size: 14px; color: var(--fg-dim); }
 .profile__facts dd { margin: 0; }
+/* 線の上下の空きは、Tools の上の線とそろえて 20px */
+.profile__note,
+.ink--block .ink__base > .profile__note,
+.ink--block .ink__wet > .profile__note {
+  margin: 20px 0 0;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+  font-size: 12px;
+  line-height: 1.7;
+  color: var(--fg-dim);
+}
 
 /* 右：年表 */
 .timeline {
   position: relative;
   list-style: none;
   margin: 0;
-  padding: 8px 0 0;
+  padding: 8px 0 140px;
 }
 .timeline::before {
   content: "";
   position: absolute;
   left: 132px;
   top: 14px;
-  bottom: 0;
+  bottom: 140px;
   width: 1px;
   background: linear-gradient(var(--line), var(--line) 85%, transparent);
 }
